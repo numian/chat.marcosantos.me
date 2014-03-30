@@ -1,0 +1,207 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <title>Palhota</title>
+  <meta name="description" content="Palhota chat">
+
+  <meta name="viewport" content="width=device-width">
+  
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  
+  <link rel="stylesheet" href="/styles/styles.css?v0.35">
+
+  <script src="/js/lib/socket.io.min.js"></script>
+  <script>
+    if(self != top)
+        top.location.href = 'https://chat.marcosantos.me/'; 
+        
+    WEB_SOCKET_SWF_LOCATION = '/swf/WebSocketMain.swf';
+  </script>
+  
+  <link rel="shortcut icon" href="/img/hut.png" type="image/png" />
+  <link rel="image_src" href="/img/hut.png" />
+  
+<body>
+<div id="main">
+
+    <div id="top">
+        <h1><span>#palhota</span></h1>
+        
+        <div id="instruments">
+            <div id="xylo">
+                <img id="keyboard-keys" src="/img/keyboard.png" class="disabled" title="Tocar com o teclado - ao ligar pode-se usar as teclas ASDFGHJK para tocar. Para desligar basta clicar em qualquer lado fora deste tecladozinho" />
+                <ul>
+                    <li class="key-1" data-key="1"></li>
+                    <li class="key-2" data-key="2"></li>
+                    <li class="key-3" data-key="3"></li>
+                    <li class="key-4" data-key="4"></li>
+                    <li class="key-5" data-key="5"></li>
+                    <li class="key-6" data-key="6"></li>
+                    <li class="key-7" data-key="7"></li>
+                    <li class="key-8" data-key="8"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="container">
+        
+        <div id="messages">
+            <div id="login"><a href="#">Click here to connect with your Facebook login</a></div>
+        </div>
+        
+        <fieldset>
+            <form id="sender">
+                <label for="msg">Type </label>
+                <input type="text" id="msg" value="" autocomplete="off" />
+            </form>
+        </fieldset>
+    </div>
+    
+    <aside id="user-list">
+        <h1>#palhantes</h1>
+        <ul></ul>
+    </aside>
+    
+    <div id="footer">
+        <strong>Nota:</strong> Ao fazer "pin tab", "pin as app tab" ou "Fixar como separador de aplicação" (com o botão direito do rato lá em cima na tab), a tab pisca ou fica azul a cada nova mensagem.<br />
+        <br />
+        <strong>Changelog</strong>
+        <ul style="margin-top: 0">
+            <li>Música lá em cima! Toda a gente ouve :) (A Palhota recomenda a utilização do Chrome para uma experiência mais agradável)</li>
+            <li>/call - invoca os índios da palhota</li>
+            <li>
+                novo comando: /notify on | off<br />
+                <ul style="margin:0 auto">
+                    <li><em>on</em>: liga um sonzinho de notificação de nova mensagem caso se esteja away 
+                    <li><em>off</em>: desliga o sonzinho
+                </ul>
+                
+            </li>
+            <li>/clear - limpa as mensagens</li>
+            <li>o /shake ganhou efeito sonoro</li>
+            <li>
+                novo comando: /mouse on | off<br />
+                <ul style="margin:0 auto">
+                    <li><em>on</em>: liga o tracking do rato. Pode-se ver os ratos de que tem também o tracking ligado
+                    <li><em>off</em>: desliga o tracking do rato.
+                </ul>
+                
+            </li>
+            <li>há um novo comando: <em>/shake</em></li>
+        </ul>
+        
+        Lista de desejos de funcionalidades <a href="https://docs.google.com/document/d/1F-1WCyN6UguTbJ_7BayhRRxHvYUoEbFkiSBdfOrrLX4/edit" target="_blank">aqui</a>
+    </div>
+</div>
+
+<audio id="welcome-snd" preload="auto">
+    <source src="/sounds/indian.mp3?v0.01" />
+    <source src="/sounds/indian.ogg?v0.01" />
+</audio>
+
+<audio id="shake-snd" preload="auto">
+    <source src="/sounds/shake.mp3?v0.02" />
+    <source src="/sounds/shake.ogg?v0.02" />
+</audio>
+
+<audio id="msg-snd" preload="auto">
+    <source src="/sounds/drip.mp3" />
+    <source src="/sounds/drip.ogg" />
+</audio>
+
+<audio id="clean-snd" preload="auto">
+    <source src="/sounds/clean.mp3" />
+    <source src="/sounds/clean.ogg" />
+</audio>
+
+<audio id="xylo1" preload="auto">
+    <source src="/sounds/xylo/1.mp3" />
+    <source src="/sounds/xylo/1.ogg" />
+</audio>
+
+<audio id="xylo2" preload="auto">
+    <source src="/sounds/xylo/2.mp3" />
+    <source src="/sounds/xylo/2.ogg" />
+</audio>
+
+<audio id="xylo3" preload="auto">
+    <source src="/sounds/xylo/3.mp3" />
+    <source src="/sounds/xylo/3.ogg" />
+</audio>
+
+<audio id="xylo4" preload="auto">
+    <source src="/sounds/xylo/4.mp3" />
+    <source src="/sounds/xylo/4.ogg" />
+</audio>
+
+<audio id="xylo5" preload="auto">
+    <source src="/sounds/xylo/5.mp3" />
+    <source src="/sounds/xylo/5.ogg" />
+</audio>
+
+<audio id="xylo6" preload="auto">
+    <source src="/sounds/xylo/6.mp3" />
+    <source src="/sounds/xylo/6.ogg" />
+</audio>
+
+<audio id="xylo7" preload="auto">
+    <source src="/sounds/xylo/7.mp3" />
+    <source src="/sounds/xylo/7.ogg" />
+</audio>
+
+<audio id="xylo8" preload="auto">
+    <source src="/sounds/xylo/8.mp3" />
+    <source src="/sounds/xylo/8.ogg" />
+</audio>
+
+
+<div id="fb-root"></div>
+        
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write("<script src='/js/libs/jquery.min.js'>\x3C/script>")
+    
+        window.fbAsyncInit = function() {
+           FB.init({
+            appId  : '438949032824129',
+            status : true,
+            cookie : true,
+            oauth  : true});
+           
+           FB.Canvas.setAutoGrow();
+           
+           FB.getLoginStatus(function(response){
+               if(response.status && response.status == 'connected')
+                   client = new Client();
+               else {
+                   $('#login a').click(function(e) {
+                      e.preventDefault();
+                                      
+                      FB.login(function(r) {
+                               if(r.authResponse)
+                                   window.location = '/';
+                           });
+                  });
+                  
+                  $('#login').show();
+               }
+           });
+          };
+          
+          (function(d){
+             var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+             js = d.createElement('script'); js.id = id; js.async = true;
+             js.src = "//connect.facebook.net/pt_PT/all.js";
+             d.getElementsByTagName('head')[0].appendChild(js);
+          }(document));
+        
+    </script>
+    <script src="/js/chat.js?v0.40"></script>
+</body>
+</html>
